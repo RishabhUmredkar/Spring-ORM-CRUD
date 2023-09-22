@@ -11,12 +11,21 @@ import javax.persistence.Table;
 public class Emp {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;  
 	private String name;  
 	private int salary;
 	
 	
+	public Emp(int id) {
+		super();
+		this.id = id;
+	}
+	public Emp() {
+		// TODO Auto-generated constructor stub
+	}
+	public Emp(int updId, String updatedName, int updatedSalary) {
+		// TODO Auto-generated constructor stub
+	}
 	public int getId() {
 		return id;
 	}
@@ -29,7 +38,7 @@ public class Emp {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public float getSalary() {
+	public int getSalary() {
 		return salary;
 	}
 	public void setSalary(int salary) {

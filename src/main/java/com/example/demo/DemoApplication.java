@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.BeanFactory;
@@ -64,19 +65,64 @@ public class DemoApplication {
 						employee.setSalary(salary);
 						
 						int ins = dao.saveEmployee(employee);
-						
+						System.out.println(ins + " Student added");
+						System.out.println("***********************************************");
+						System.out.println();
 						break;
 					case 2:
 						// display All student
+						List<Emp> allEmp = dao.getAllEmp();
+						for(Emp e : allEmp)
+						{
+							System.out.println("Id : "+ e.getId());
+							System.out.println("Name : "+e.getName());
+							System.out.println("Salary : "+e.getSalary());
+							System.out.println("_____________________________________");
+						}
 						break;
 					case 3:
 						//  get detail of single student
+						System.out.println("Enter the Employee Id : ");
+						int id1 = Integer.parseInt(sc.nextLine());
+						Emp employee1 = dao.getEmp(id1);
+						System.out.println("ID : "+ employee1.getId());
+						System.out.println("Name : "+ employee1.getName());
+						System.out.println("Salary : "+ employee1.getSalary());
+						System.out.println("________________________________________");
 						break;
 					case 4:
 						//  delete Student
+						System.out.println("Enter the Employee Id : ");
+						 id1 = Integer.parseInt(sc.nextLine());
+						dao.deleteEmp(id1);
+						System.out.println("Data Deleted");
+						
 						break;
 					case 5:
 						// update Student
+						System.out.println("Enter the Student id to update: ");
+		    			int updId =Integer.parseInt(sc.nextLine());
+		    			System.out.println("PRESS 1 to update Name");
+		    			System.out.println("PRESS 2 to update salary");
+		    			int nameOrsalary = Integer.parseInt(sc.nextLine());
+		    			Emp emp = dao.getEmp(updId);
+		    			String updatedName = emp.getName();
+		    			int updatedSalary = emp.getSalary();
+		    			
+		    			switch (nameOrsalary) {
+		    				case 1:
+		        				System.out.println("Enter the Name to be updated: ");
+		        				updatedName =sc.nextLine();
+		        				emp = new Emp(updId, updatedName, updatedSalary);
+		        				break;
+		    				case 2:
+		        				System.out.println("Enter the City to be updated: ");
+		        				updatedSalary = Integer.parseInt(sc.nextLine());
+		        				emp = new Emp(updId, updatedName, updatedSalary);
+		    					break;				
+		    			}
+		    			dao.updateEmployee(emp);
+		    			System.out.println("Updated student Details Successfully!");
 						break;
 					case 0:
 						// Exit
