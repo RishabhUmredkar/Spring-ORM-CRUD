@@ -102,10 +102,12 @@ public class DemoApplication {
 						// update Student
 						System.out.println("Enter the Student id to update: ");
 		    			int updId =Integer.parseInt(sc.nextLine());
+		    			Emp emp = dao.getEmp(updId);
+
 		    			System.out.println("PRESS 1 to update Name");
 		    			System.out.println("PRESS 2 to update salary");
 		    			int nameOrsalary = Integer.parseInt(sc.nextLine());
-		    			Emp emp = dao.getEmp(updId);
+		    			
 		    			String updatedName = emp.getName();
 		    			int updatedSalary = emp.getSalary();
 		    			
@@ -113,16 +115,16 @@ public class DemoApplication {
 		    				case 1:
 		        				System.out.println("Enter the Name to be updated: ");
 		        				updatedName =sc.nextLine();
-		        				emp = new Emp(updId, updatedName, updatedSalary);
+		        				emp.setName(updatedName);
 		        				break;
 		    				case 2:
-		        				System.out.println("Enter the City to be updated: ");
+		        				System.out.println("Enter the Salary to be updated: ");
 		        				updatedSalary = Integer.parseInt(sc.nextLine());
-		        				emp = new Emp(updId, updatedName, updatedSalary);
+		        				emp.setSalary(updatedSalary);
 		    					break;				
 		    			}
 		    			dao.updateEmployee(emp);
-		    			System.out.println("Updated student Details Successfully!");
+		    			System.out.println("Updated Employee Details Successfully!");
 						break;
 					case 0:
 						// Exit
